@@ -4,7 +4,6 @@ import com.seb.task.constants.HomeAssignmentConstants;
 import com.seb.task.dto.CustomerAnswersDto;
 import com.seb.task.entity.bundle.Bundle;
 import com.seb.task.entity.bundle.BundleType;
-import com.seb.task.entity.product.accounts.Account;
 import com.seb.task.entity.product.accounts.AccountType;
 import com.seb.task.entity.product.cards.CardType;
 import com.seb.task.exceptions.HighIncomeException;
@@ -14,14 +13,10 @@ import com.seb.task.exceptions.OverAgeException;
 import com.seb.task.exceptions.UnderAgeException;
 import com.seb.task.exceptions.WeakBundleException;
 import com.seb.task.exceptions.ZeroIncomeException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class RuleCheckerService {
-
-   //@Autowired
-   private BundleService bundleService = new BundleService();
 
    public boolean isCurrentAccountAllowed(CustomerAnswersDto dto) {
       if (dto.getIncome() < HomeAssignmentConstants.ZERO_INCOME + 1) {
@@ -50,7 +45,7 @@ public class RuleCheckerService {
       if (dto.getAge() > HomeAssignmentConstants.AGE_SEVENTEEN) {
          throw new OverAgeException("Over Age Exception", dto.getAge());
       }
-      return   true;
+      return true;
    }
 
    public boolean isStudentAccountAllowed(CustomerAnswersDto dto) {
@@ -86,7 +81,7 @@ public class RuleCheckerService {
       return false;
    }
 
-   public boolean checkBundleConsistency(BundleType bundleType, CustomerAnswersDto dto) {
+   public void checkBundleConsistency(BundleType bundleType, CustomerAnswersDto dto) {
 
       Bundle bundle = Bundle.getBundleFromBundleType(bundleType);
 
@@ -94,7 +89,6 @@ public class RuleCheckerService {
 
       isThisTypeOfAccountAllowed(accountType,dto);
 
-      return false;
    }
 
    public boolean isDebitCardAllowed(BundleType bundleType) {
@@ -121,7 +115,7 @@ public class RuleCheckerService {
       return isCurrentAccountPlusAllowed(dto);
    }
 
-   public boolean isThisTypeOfCardAllowed(CardType cardType, CustomerAnswersDto dto, BundleType bundleType ) {
+   public boolean isThisTypeOfCardAllowed(CardType cardType, CustomerAnswersDto dto, BundleType bundleType) {
 
       if(cardType == CardType.DEBIT_CARD) {
          return isDebitCardAllowed(bundleType);
@@ -136,10 +130,5 @@ public class RuleCheckerService {
       }
 
       return false;
-
    }
-
-
-
-
 }

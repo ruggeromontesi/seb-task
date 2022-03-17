@@ -25,9 +25,9 @@ public class BundleController {
    private ValidateService validateService;
 
    @PostMapping(value ="/request")
-   public ResponseEntity<Optional<Bundle>> returnBundle(@RequestBody CustomerAnswersDto dto) {
+   public ResponseEntity<Bundle> returnBundle(@RequestBody CustomerAnswersDto dto) {
       if (validateService.customerAnswerDtoValidator(dto)) {
-         Optional<Bundle> body = bundleService.returnBundle(dto);
+         Bundle body = bundleService.returnBundle(dto);
          return ResponseEntity.ok(body);
       } else {
          return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -37,7 +37,7 @@ public class BundleController {
    @PostMapping(value ="/modify")
    public Bundle modifyBundle(@RequestBody BundleModificationDto dto) {
       validateService.validateModificationBundleDto(dto);
-      Bundle returnBundle = bundleService.modifyBundle(dto).get();
+      Bundle returnBundle = bundleService.modifyBundle(dto);
       return returnBundle;
    }
 }

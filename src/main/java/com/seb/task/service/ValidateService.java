@@ -60,15 +60,31 @@ public class ValidateService {
      }
 
       List<String> cardList = dto.getCardsToBeRemoved();
-      List<CardType> cardTypeList = new ArrayList<>();
+
       for (String card : cardList) {
-         CardType cardType;
+
          try {
-            cardType = CardType.valueOf(card);
+            CardType.valueOf(card);
          } catch (IllegalArgumentException exception) {
             throw new InvalidCardException("Invalid Card Type", card);
          }
       }
+
+      cardList = dto.getCardsToBeAdded();
+      for (String card : cardList) {
+
+         try {
+            CardType.valueOf(card);
+         } catch (IllegalArgumentException exception) {
+            throw new InvalidCardException("Invalid Card Type", card);
+         }
+      }
+
+
+
+
+
+
       return false;
    }
 

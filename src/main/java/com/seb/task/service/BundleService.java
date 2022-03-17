@@ -27,32 +27,31 @@ import org.springframework.stereotype.Service;
 public class BundleService {
 
    @Autowired
-   private RuleCheckerService ruleCheckerService ;
+   private RuleCheckerService ruleCheckerService;
 
-   public Optional<Bundle> returnBundle(CustomerAnswersDto dto) {
-      Bundle bundle = null;
-      bundle = recommendBundle(dto.getAge(), dto.isStudent(), dto.getIncome()).get();
-      return Optional.of(bundle);
-
+   public Bundle returnBundle(CustomerAnswersDto dto) {
+      Bundle bundle;
+      bundle = recommendBundle(dto.getAge(), dto.isStudent(), dto.getIncome());
+      return bundle;
    }
 
-   public Optional<Bundle> recommendBundle(int age, boolean student, int income) {
+   public Bundle recommendBundle(int age, boolean student, int income) {
 
       if (age < 18) {
-         return Optional.of(new JuniorSaverBundle());
+         return new JuniorSaverBundle();
       }
 
       if (student && income == 0) {
-         return  Optional.of(new StudentBundle());
+         return  new StudentBundle();
       } else {
          if (income > 0) {
             if (income > 40000) {
-               return  Optional.of(new GoldBundle());
+               return  new GoldBundle();
             } else {
                if (income > 12000) {
-                  return  Optional.of(new ClassicPlusBundle());
+                  return  new ClassicPlusBundle();
                } else {
-                  return  Optional.of(new ClassicBundle());
+                  return  new ClassicBundle();
                }
             }
          } else {
@@ -61,18 +60,11 @@ public class BundleService {
       }
    }
 
-   public Optional<Bundle> modifyBundle(BundleModificationDto dto) {
-
-      int age = dto.getCustomerAnswersDto().getAge();
-      boolean student = dto.getCustomerAnswersDto().isStudent();
-      int income = dto.getCustomerAnswersDto().getIncome();
+   public Bundle modifyBundle(BundleModificationDto dto) {
 
       BundleType bundleType = BundleType.valueOf(dto.getBundleType());
 
       ruleCheckerService.checkBundleConsistency(bundleType,dto.getCustomerAnswersDto());
-
-
-
 
       Bundle returnBundle = Bundle.getBundleFromBundleType(bundleType);
 
@@ -83,8 +75,6 @@ public class BundleService {
          newAccount = Account.getAccountFromAccountType(accountType);
       }
 
-
-
       if (accountType != null) {
          if (ruleCheckerService.isThisTypeOfAccountAllowed(accountType,dto.getCustomerAnswersDto())) {
             returnBundle.setAccount(newAccount);
@@ -92,30 +82,15 @@ public class BundleService {
 
       }
 
-
-      List<CardType> listOfCardTypesToBeRemoved = new ArrayList<>();
-
-      for (String card : dto.getCardsToBeRemoved()) {
-         CardType cardType;
-         try {
-            cardType = CardType.valueOf(card);
-         } catch (IllegalArgumentException exception) {
-            throw new InvalidCardException("Invalid Card Type", card);
-         }
-         listOfCardTypesToBeRemoved.add(cardType);
-      }
+      List<CardType> listOfCardTypesToBeRemoved = dto.getCardsToBeRemoved()
+            .stream().map(CardType::valueOf).collect(Collectors.toList());
 
       returnBundle.removeCards(listOfCardTypesToBeRemoved);
 
       List<CardType> listOfCardTypesToBeAdded = new ArrayList<>();
 
       for (String card : dto.getCardsToBeAdded()) {
-         CardType cardType;
-         try {
-            cardType = CardType.valueOf(card);
-         } catch (IllegalArgumentException exception) {
-            throw new InvalidCardException("Invalid Card Type", card);
-         }
+         CardType cardType = CardType.valueOf(card);
          if (ruleCheckerService.isThisTypeOfCardAllowed(cardType,dto.getCustomerAnswersDto(),returnBundle.getBundleType())) {
             listOfCardTypesToBeAdded.add(cardType);
          }
@@ -123,22 +98,11 @@ public class BundleService {
       }
 
       List<CardType> cardTypeList = returnBundle.getCardList().stream().map(card -> card.getCardType()).collect(Collectors.toList());
-      for(CardType cardType : listOfCardTypesToBeAdded) {
-
-         if(!cardTypeList.contains(cardType)) {
+      for (CardType cardType : listOfCardTypesToBeAdded) {
+         if (!cardTypeList.contains(cardType)) {
             returnBundle.getCardList().add(Card.getCardFromCardType(cardType));
          }
       }
-
-      return Optional.of(returnBundle);
+      return returnBundle;
    }
-
-
-
-
-
-
-
-
-
 }
