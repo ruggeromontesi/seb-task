@@ -1,13 +1,17 @@
 package com.seb.task.exceptions;
 
 public class FieldErrorResponse {
+
 	private String fieldName;
+
+	private String errorMessage;
+
 	public FieldErrorResponse(String fieldName, String errorMessage) {
 		super();
 		this.fieldName = fieldName;
 		this.errorMessage = errorMessage;
 	}
-	private String errorMessage;
+
 	public String getFieldName() {
 		return fieldName;
 	}

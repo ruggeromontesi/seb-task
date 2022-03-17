@@ -1,10 +1,9 @@
 package com.seb.task.exceptionhandler;
 
 import com.seb.task.entity.bundle.BundleType;
-import com.seb.task.exceptions.FieldErrorResponse;
-import com.seb.task.exceptions.InvalidAgeException;
-import com.seb.task.exceptions.InvalidBundleException;
-import com.seb.task.exceptions.InvalidIncomeException;
+import com.seb.task.entity.product.accounts.AccountType;
+import com.seb.task.entity.product.cards.CardType;
+import com.seb.task.exceptions.*;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -58,10 +57,32 @@ public class RestControllerExceptionHandler {
             List<String> enumNames = Stream.of(BundleType.values())
                     .map(Enum::name)
                     .collect(Collectors.toList());
-            String message = "A wrong bundle was specified. Bundle has to be chosen within : " + enumNames + "  .";
+            String message = "A wrong bundle was specified. Bundle has to be chosen within : " + enumNames + ".";
 
             return new ResponseEntity<>(
-                    message + ((InvalidBundleException) exception).getTypedBundle() + " was typed instead.",
+                    message + " " + ((InvalidBundleException) exception).getTypedBundle() + " was typed instead.",
+                    HttpStatus.BAD_REQUEST);
+        }
+
+        if (exception instanceof InvalidAccountException) {
+            List<String> enumNames = Stream.of(AccountType.values())
+                    .map(Enum::name)
+                    .collect(Collectors.toList());
+            String message = "A wrong account type was specified. Account has to be chosen within : " + enumNames + ".";
+
+            return new ResponseEntity<>(
+                    message + " " + ((InvalidAccountException) exception).getTypedAccount() + " was typed instead.",
+                    HttpStatus.BAD_REQUEST);
+        }
+
+        if (exception instanceof InvalidCardException) {
+            List<String> enumNames = Stream.of(CardType.values())
+                    .map(Enum::name)
+                    .collect(Collectors.toList());
+            String message = "A wrong card type was specified. Card has to be chosen within : " + enumNames + ".";
+
+            return new ResponseEntity<>(
+                    message + " " + ((InvalidCardException) exception).getTypedCard() + " was typed instead.",
                     HttpStatus.BAD_REQUEST);
         }
 

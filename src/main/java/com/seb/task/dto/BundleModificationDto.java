@@ -1,6 +1,7 @@
 package com.seb.task.dto;
 
-import com.seb.task.entity.bundle.Bundle;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class BundleModificationDto {
@@ -9,7 +10,9 @@ public class BundleModificationDto {
 
     private CustomerAnswersDto customerAnswersDto;
 
-    private Bundle modifiedBundle;
+    protected String accountType;
+
+    protected List<String> cardList = new ArrayList<>();
 
     public BundleModificationDto() {
     }
@@ -30,11 +33,16 @@ public class BundleModificationDto {
         this.customerAnswersDto = customerAnswersDto;
     }
 
-    public Bundle getModifiedBundle() {
-        return modifiedBundle;
+    public String getAccountType() {
+        return accountType;
     }
 
-    public void setModifiedBundle(Bundle modifiedBundle) {
-        this.modifiedBundle = modifiedBundle;
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
     }
+
+    public List<String> getCardList() {
+        return cardList;
+    }
+
 }

@@ -1,0 +1,93 @@
+{
+	"info": {
+		"_postman_id": "b2b9a825-7d6f-4e1f-a415-79739a2d2dd6",
+		"name": "task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"age\":18,\r\n    \"student\": true,\r\n    \"income\":0\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/request",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"request"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "modifyBundle",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{    \r\n    \"bundleType\":\"JUNIOR_SAVER\",\r\n    \"customerAnswersDto\": {\r\n        \"age\":25,\r\n         \"student\":true,\r\n         \"income\":1500\r\n    },\r\n    \"accountType\": \"CURRENT_ACCOUNT_PLUS\",\r\n    \"cardList\": [\r\n            \"DEBIT_CARD\",\r\n            \"GOLD_CREDIT_CARD\"\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/modify",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"modify"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "modifyBundle-CustomerAnswerDto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"bundle\":\"GoldBundle\",\r\n    \"age\":25,\r\n    \"student\":true,\r\n    \"income\":1500,\r\n    \"modifiedBundle\":{\r\n    \"value\": 3,\r\n    \"bundleType\": \"GoldBundle\",\r\n    \"account\": {\r\n        \"description\": \"CurrentAccountPlus\"\r\n    },\r\n    \"cardList\": [\r\n        {\r\n            \"cardType\": \"DebitCard\"\r\n        },\r\n        {\r\n            \"cardType\": \"GoldCreditCard\"\r\n        }\r\n    ]\r\n}\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/modify",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"modify"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

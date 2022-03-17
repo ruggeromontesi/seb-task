@@ -6,14 +6,14 @@ import org.junit.jupiter.api.Test;
 
 public class CustomerFactoryTest {
 
-    private BundleService factory = new BundleService();
+    private BundleService bundleService = new BundleService();
 
     @Test
     public void testRecommendBundleJuniorSaver() {
         int age = 17;
         boolean student = false;
         int income = 0;
-        Bundle resultBundle = factory.recommendBundle(age,student,income).get();
+        Bundle resultBundle = bundleService.recommendBundle(age,student,income).get();
         Assertions.assertTrue(resultBundle instanceof JuniorSaverBundle);
    }
 
@@ -22,7 +22,7 @@ public class CustomerFactoryTest {
         int age = 18;
         boolean student = false;
         int income = 0;
-        Bundle resultBundle = factory.recommendBundle(age,student,income).orElse(null);
+        Bundle resultBundle = bundleService.recommendBundle(age,student,income).orElse(null);
         Assertions.assertNull(resultBundle);
     }
 
@@ -31,7 +31,7 @@ public class CustomerFactoryTest {
         int age = 18;
         boolean student = true;
         int income = 0;
-        Bundle resultBundle = factory.recommendBundle(age,student,income).get();
+        Bundle resultBundle = bundleService.recommendBundle(age,student,income).get();
         Assertions.assertTrue(resultBundle instanceof StudentBundle);
     }
 
@@ -40,7 +40,7 @@ public class CustomerFactoryTest {
         int age = 18;
         boolean student = true;
         int income = 10;
-        Bundle resultBundle = factory.recommendBundle(age,student,income).get();
+        Bundle resultBundle = bundleService.recommendBundle(age,student,income).get();
         Assertions.assertTrue(resultBundle instanceof ClassicBundle);
     }
 
@@ -50,7 +50,7 @@ public class CustomerFactoryTest {
         int age = 18;
         boolean student = false;
         int income = 15000;
-        Bundle resultBundle = factory.recommendBundle(age,student,income).get();
+        Bundle resultBundle = bundleService.recommendBundle(age,student,income).get();
         Assertions.assertTrue(resultBundle instanceof ClassicPlusBundle);
     }
 
@@ -59,7 +59,7 @@ public class CustomerFactoryTest {
         int age = 18;
         boolean student = false;
         int income = 45000;
-        Bundle resultBundle = factory.recommendBundle(age,student,income).get();
+        Bundle resultBundle = bundleService.recommendBundle(age,student,income).get();
         Assertions.assertTrue(resultBundle instanceof GoldBundle);
     }
 

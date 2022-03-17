@@ -19,7 +19,7 @@ import static org.springframework.http.ResponseEntity.ok;
 public class BundleController {
 
     @Autowired
-    private BundleService factory;
+    private BundleService bundleService;
 
     @Autowired
     private ValidateService validateService;
@@ -27,7 +27,7 @@ public class BundleController {
     @PostMapping(value ="/request")
     public ResponseEntity<Optional<Bundle>> returnBundle(@RequestBody CustomerAnswersDto dto) {
         if(validateService.customerAnswerDtoValidator(dto)) {
-            Optional<Bundle> body = factory.returnBundle(dto);
+            Optional<Bundle> body = bundleService.returnBundle(dto);
             return ResponseEntity.ok(body);
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -50,7 +50,7 @@ public class BundleController {
         int age = 18;
         boolean student = true;
         int income = 0;
-        Bundle responseBundle = factory.recommendBundle(age,student,income).get();
+        Bundle responseBundle = bundleService.recommendBundle(age,student,income).get();
         return  responseBundle;
     }
 

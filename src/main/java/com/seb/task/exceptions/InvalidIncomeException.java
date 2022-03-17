@@ -1,6 +1,7 @@
 package com.seb.task.exceptions;
 
 public class InvalidIncomeException extends RuntimeException{
+
     private static final long serialVersionUID = 1L;
 
     private int income;
