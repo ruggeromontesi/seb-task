@@ -18,50 +18,26 @@ import static org.springframework.http.ResponseEntity.ok;
 @RestController
 public class BundleController {
 
-    @Autowired
-    private BundleService bundleService;
+   @Autowired
+   private BundleService bundleService;
 
-    @Autowired
-    private ValidateService validateService;
+   @Autowired
+   private ValidateService validateService;
 
-    @PostMapping(value ="/request")
-    public ResponseEntity<Optional<Bundle>> returnBundle(@RequestBody CustomerAnswersDto dto) {
-        if(validateService.customerAnswerDtoValidator(dto)) {
-            Optional<Bundle> body = bundleService.returnBundle(dto);
-            return ResponseEntity.ok(body);
-        } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+   @PostMapping(value ="/request")
+   public ResponseEntity<Optional<Bundle>> returnBundle(@RequestBody CustomerAnswersDto dto) {
+      if (validateService.customerAnswerDtoValidator(dto)) {
+         Optional<Bundle> body = bundleService.returnBundle(dto);
+         return ResponseEntity.ok(body);
+      } else {
+         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+      }
+   }
 
-                    /*ResponseEntity
-                    .status(HttpStatus.FORBIDDEN)
-                    .body("Error Message");*/
-        }
-
-    }
-
-
-    @GetMapping("/hello")
-    public String hello() {
-        return String.format("Hello seb task !");
-    }
-
-    @GetMapping("/bundle")
-    public Bundle getAccount() {
-        int age = 18;
-        boolean student = true;
-        int income = 0;
-        Bundle responseBundle = bundleService.recommendBundle(age,student,income).get();
-        return  responseBundle;
-    }
-
-    @PostMapping(value ="/modify")
-    public Bundle modifyBundle(@RequestBody BundleModificationDto dto) {
-        validateService.validateModificationBundleDto(dto);
-
-        return new GoldBundle();
-
-    }
-
-
-
+   @PostMapping(value ="/modify")
+   public Bundle modifyBundle(@RequestBody BundleModificationDto dto) {
+      validateService.validateModificationBundleDto(dto);
+      Bundle returnBundle = bundleService.modifyBundle(dto).get();
+      return returnBundle;
+   }
 }

@@ -12,7 +12,9 @@ public class BundleModificationDto {
 
     protected String accountType;
 
-    protected List<String> cardList = new ArrayList<>();
+    protected List<String> cardsToBeRemoved = new ArrayList<>();
+
+    protected List<String> cardsToBeAdded = new ArrayList<>();
 
     public BundleModificationDto() {
     }
@@ -41,8 +43,11 @@ public class BundleModificationDto {
         this.accountType = accountType;
     }
 
-    public List<String> getCardList() {
-        return cardList;
+    public List<String> getCardsToBeRemoved() {
+        return cardsToBeRemoved;
     }
 
+    public List<String> getCardsToBeAdded() {
+        return cardsToBeAdded;
+    }
 }

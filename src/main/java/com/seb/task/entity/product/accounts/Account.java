@@ -9,4 +9,27 @@ public class Account {
     }
 
 
+    public static Account getAccountFromAccountType(AccountType accountType) {
+        Account newAccount = null;
+
+        if (accountType == AccountType.CURRENT_ACCOUNT) {
+            newAccount = new CurrentAccount();
+        }
+        if (accountType == AccountType.CURRENT_ACCOUNT_PLUS) {
+            newAccount = new CurrentAccountPlus();
+        }
+
+        if (accountType == AccountType.CURRENT_ACCOUNT_PLUS) {
+            newAccount = new CurrentAccountPlus();
+        }
+
+        if (accountType == AccountType.JUNIOR_SAVER_ACCOUNT) {
+            newAccount = new JuniorSaverAccount();
+        }
+
+        return newAccount;
+
+    }
+
+
 }
