@@ -14,6 +14,9 @@ This collection contains two calls:
 
 requestBundle
 The body of the rest call contains the parameters used to model the customers' answers:
+age: should be within 0 and 100, side points excluded.
+student: can be true or false
+income : and integer bigger than 0
 {
     "age":32,
     "student": false,
@@ -24,7 +27,25 @@ The body of the rest call contains the parameters used to model the customers' a
 
  modifyBundle
 
-The body of this call contains details
+The body of this call contains details needed to customize the bundle
+
+"bundleType": Type of Bundle that the customer wants to mofify choose values within
+[JUNIOR_SAVER, STUDENT, CLASSIC, CLASSIC_PLUS, GOLD]
+
+ "customerAnswersDto": same as above
+"accountType" : This field represents the new accounttype that customer wants to have.
+It consists of  String chosen among values : 
+[CURRENT_ACCOUNT, CURRENT_ACCOUNT_PLUS, JUNIOR_SAVER_ACCOUNT, STUDENT_ACCOUNT]
+
+cardsToBeRemoved: List of card types to be removed. If the card type is not found is simply ignored.
+a String chosen among values :
+[DEBIT_CARD, CREDIT_CARD, GOLD_CREDIT_CARD]
+
+"cardsToBeAdded":
+If the card type is already present is simply ignored.
+a String chosen among values :
+[DEBIT_CARD, CREDIT_CARD, GOLD_CREDIT_CARD]
+
 
 {    
     "bundleType":"GOLD",
@@ -46,6 +67,8 @@ The body of this call contains details
 
     ]
 }
+
+/********************/
 
 
 
