@@ -55,11 +55,11 @@ public class ValidateService {
          throw new InvalidBundleException("Invalid bundle Type",bundleModificationDto.getBundleType());
       }
 
-      if (bundleModificationDto.getAccountType() != null) {
+      if (bundleModificationDto.getNewAccountType() != null) {
          try {
-            AccountType.valueOf(bundleModificationDto.getAccountType());
+            AccountType.valueOf(bundleModificationDto.getNewAccountType());
          } catch (IllegalArgumentException exception) {
-            throw new InvalidAccountException("Invalid account Type",bundleModificationDto.getAccountType());
+            throw new InvalidAccountException("Invalid account Type",bundleModificationDto.getNewAccountType());
          }
       }
 

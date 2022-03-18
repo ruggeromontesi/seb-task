@@ -95,15 +95,15 @@ public class RuleCheckerServiceTest {
       dto.setAge(18);
       dto.setIncome(41000);
       AccountType accountType = AccountType.JUNIOR_SAVER_ACCOUNT;
-      //Assertions.assertFalse(ruleCheckerService.isThisTypeOfAccountAllowed(accountType,dto));
+      //Assertions.assertFalse(ruleCheckerService.isThisTypeOfAccountAllowed(newAccountType,dto));
       dto.setAge(17);
       Assertions.assertTrue(ruleCheckerService.isThisTypeOfAccountAllowed(accountType,dto));
       accountType = AccountType.CURRENT_ACCOUNT_PLUS;
-      //Assertions.assertFalse(ruleCheckerService.isThisTypeOfAccountAllowed(accountType,dto));
+      //Assertions.assertFalse(ruleCheckerService.isThisTypeOfAccountAllowed(newAccountType,dto));
       dto.setAge(28);
       Assertions.assertTrue(ruleCheckerService.isThisTypeOfAccountAllowed(accountType,dto));
       dto.setIncome(20000);
-      //Assertions.assertFalse(ruleCheckerService.isThisTypeOfAccountAllowed(accountType,dto));
+      //Assertions.assertFalse(ruleCheckerService.isThisTypeOfAccountAllowed(newAccountType,dto));
       /**************/
 
 

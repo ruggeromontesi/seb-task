@@ -2,7 +2,6 @@ package com.seb.task.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.seb.task.dto.BundleModificationDto;
@@ -18,7 +17,6 @@ import com.seb.task.entity.product.accounts.Account;
 import com.seb.task.entity.product.accounts.AccountType;
 import com.seb.task.entity.product.cards.Card;
 import com.seb.task.entity.product.cards.CardType;
-import com.seb.task.exceptions.InvalidCardException;
 import com.seb.task.exceptions.NoSuitableProductException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -70,8 +68,8 @@ public class BundleService {
 
       AccountType accountType = null;
       Account newAccount = null;
-      if (dto.getAccountType() != null) {
-         accountType = AccountType.valueOf(dto.getAccountType());
+      if (dto.getNewAccountType() != null) {
+         accountType = AccountType.valueOf(dto.getNewAccountType());
          newAccount = Account.getAccountFromAccountType(accountType);
       }
 
@@ -103,6 +101,7 @@ public class BundleService {
             returnBundle.getCardList().add(Card.getCardFromCardType(cardType));
          }
       }
+      returnBundle.setBundleType(BundleType.CUSTOMIZED);
       return returnBundle;
    }
 }

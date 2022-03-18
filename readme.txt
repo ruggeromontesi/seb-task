@@ -33,7 +33,7 @@ The body of this call contains details needed to customize the bundle
 [JUNIOR_SAVER, STUDENT, CLASSIC, CLASSIC_PLUS, GOLD]
 
  "customerAnswersDto": same as above
-"accountType" : This field represents the new accounttype that customer wants to have.
+"newAccountType" : This field represents the new accounttype that customer wants to have.
 It consists of  String chosen among values : 
 [CURRENT_ACCOUNT, CURRENT_ACCOUNT_PLUS, JUNIOR_SAVER_ACCOUNT, STUDENT_ACCOUNT]
 
@@ -54,7 +54,7 @@ a String chosen among values :
          "student":false,
          "income":60000
     },
-    "accountType" :"CURRENT_ACCOUNT",
+    "newAccountType" :"CURRENT_ACCOUNT",
         "cardsToBeRemoved": [
             "GOLD_CREDIT_CARD"
             

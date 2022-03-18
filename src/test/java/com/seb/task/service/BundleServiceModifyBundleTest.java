@@ -29,7 +29,7 @@ public class BundleServiceModifyBundleTest {
       BundleModificationDto dto = new BundleModificationDto();
       dto.setBundleType(recommendedBundle.getBundleType().name());
       dto.setCustomerAnswersDto(customerAnswersDto);
-      dto.setAccountType("CURRENT_ACCOUNT");
+      dto.setNewAccountType("CURRENT_ACCOUNT");
       dto.getCardsToBeRemoved().add("DEBIT_CARD");
       dto.getCardsToBeRemoved().add("GOLD_CREDIT_CARD");
       Bundle modifiedBundle = bundleService.modifyBundle(dto);
@@ -51,7 +51,7 @@ public class BundleServiceModifyBundleTest {
       BundleModificationDto dto = new BundleModificationDto();
       dto.setBundleType(recommendedBundle.getBundleType().name());
       dto.setCustomerAnswersDto(customerAnswersDto);
-      dto.setAccountType("CURRENT_ACCOUNT_PLUS");
+      dto.setNewAccountType("CURRENT_ACCOUNT_PLUS");
       dto.getCardsToBeAdded().add("GOLD_CREDIT_CARD");
       Bundle modifiedBundle ;
       try {
