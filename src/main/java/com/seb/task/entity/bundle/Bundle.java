@@ -1,15 +1,11 @@
 package com.seb.task.entity.bundle;
 
-import com.seb.task.entity.Customer;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.seb.task.entity.product.accounts.Account;
 import com.seb.task.entity.product.cards.Card;
 import com.seb.task.entity.product.cards.CardType;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class Bundle {
 

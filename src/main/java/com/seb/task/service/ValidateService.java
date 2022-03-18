@@ -1,5 +1,8 @@
 package com.seb.task.service;
 
+import java.util.List;
+
+import com.seb.task.constants.HomeAssignmentConstants;
 import com.seb.task.dto.BundleModificationDto;
 import com.seb.task.dto.CustomerAnswersDto;
 import com.seb.task.entity.bundle.BundleType;
@@ -10,56 +13,57 @@ import com.seb.task.exceptions.InvalidAgeException;
 import com.seb.task.exceptions.InvalidBundleException;
 import com.seb.task.exceptions.InvalidCardException;
 import com.seb.task.exceptions.InvalidIncomeException;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class ValidateService {
+   /** This method checks that the dto with client answers has reasonable values, i.e.: age included within minimum and maximum
+    * value and that income is a non negative integer
+    * @param customerAnswersDto the entity containing client's answers
+    * @return true if dto matches the validity criteria
+    */
+   public boolean customerAnswerDtoValidator(@NotNull CustomerAnswersDto customerAnswersDto) {
+      if (customerAnswersDto.getAge() < HomeAssignmentConstants.MINIMUM_AGE
+            || customerAnswersDto.getAge() > HomeAssignmentConstants.MAXIMUM_AGE) {
+         throw  new InvalidAgeException("Invalid age!",customerAnswersDto.getAge());
+      }
+      if (customerAnswersDto.getIncome() < HomeAssignmentConstants.ZERO_INCOME) {
+         throw new InvalidIncomeException("Invalid income!",customerAnswersDto.getIncome());
+      }
+      return true;
+   }
 
-    public boolean customerAnswerDtoValidator(CustomerAnswersDto dto) {
-        if(dto.getAge() <1 || dto.getAge() > 99) {
-            throw  new InvalidAgeException("Invalid age!",dto.getAge());
-        } else {
-
-        }
-
-        if (dto.getIncome() < 0) {
-            throw new InvalidIncomeException("Invalid income!",dto.getIncome());
-        }
-
-        return true;
-    }
-
-   public boolean validateModificationBundleDto(BundleModificationDto dto) {
-      if (!customerAnswerDtoValidator(dto.getCustomerAnswersDto())) {
+   /**This method checks that the BundleModificationDto contains valid values for its fields.
+    * @param bundleModificationDto : is the entity passed to the method including fields representing the proposed bundle and
+    *                              request of customization from client.
+    *
+    * @return true if the test is successful otherwise relevant exceptions are thrown.
+    */
+   public boolean validateModificationBundleDto(@NotNull BundleModificationDto bundleModificationDto) {
+      if (!customerAnswerDtoValidator(bundleModificationDto.getCustomerAnswersDto())) {
          return false;
       }
 
-      if (dto.getBundleType() == null) {
-         throw new InvalidBundleException("Invalid bundle Type",dto.getBundleType());
+      if (bundleModificationDto.getBundleType() == null) {
+         throw new InvalidBundleException("Invalid bundle Type",bundleModificationDto.getBundleType());
       }
-
-      BundleType bundleType;
 
       try {
-         bundleType = BundleType.valueOf(dto.getBundleType());
+         BundleType.valueOf(bundleModificationDto.getBundleType());
       } catch (IllegalArgumentException exception) {
-         throw new InvalidBundleException("Invalid bundle Type",dto.getBundleType());
+         throw new InvalidBundleException("Invalid bundle Type",bundleModificationDto.getBundleType());
       }
 
-      AccountType accountType;
-
-     if (dto.getAccountType() != null) {
+      if (bundleModificationDto.getAccountType() != null) {
          try {
-            accountType = AccountType.valueOf(dto.getAccountType());
+            AccountType.valueOf(bundleModificationDto.getAccountType());
          } catch (IllegalArgumentException exception) {
-            throw new InvalidAccountException("Invalid account Type",dto.getAccountType());
+            throw new InvalidAccountException("Invalid account Type",bundleModificationDto.getAccountType());
          }
-     }
+      }
 
-      List<String> cardList = dto.getCardsToBeRemoved();
+      List<String> cardList = bundleModificationDto.getCardsToBeRemoved();
 
       for (String card : cardList) {
 
@@ -70,7 +74,7 @@ public class ValidateService {
          }
       }
 
-      cardList = dto.getCardsToBeAdded();
+      cardList = bundleModificationDto.getCardsToBeAdded();
       for (String card : cardList) {
 
          try {
@@ -79,16 +83,6 @@ public class ValidateService {
             throw new InvalidCardException("Invalid Card Type", card);
          }
       }
-
-
-
-
-
-
-      return false;
+      return true;
    }
-
-
-
-
 }
