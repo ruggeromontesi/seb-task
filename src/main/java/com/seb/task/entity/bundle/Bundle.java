@@ -13,9 +13,11 @@ import com.seb.task.entity.cards.CardType;
 import com.seb.task.entity.cards.CreditCard;
 import com.seb.task.entity.cards.DebitCard;
 import com.seb.task.entity.cards.GoldCreditCard;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class Bundle {
 
+   @JsonIgnore
    protected int value;
 
    protected BundleType bundleType;
