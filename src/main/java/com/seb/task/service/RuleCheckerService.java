@@ -83,7 +83,7 @@ public class RuleCheckerService {
 
    public void checkBundleConsistency(BundleType bundleType, CustomerAnswersDto dto) {
 
-      Bundle bundle = Bundle.getBundleFromBundleType(bundleType);
+      Bundle bundle = new Bundle(bundleType);
 
       AccountType accountType = bundle.getAccount().getAccountType();
 

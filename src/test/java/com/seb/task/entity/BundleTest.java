@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.seb.task.entity.bundle.Bundle;
-import com.seb.task.entity.bundle.GoldBundle;
+import com.seb.task.entity.bundle.BundleType;
 import com.seb.task.entity.product.cards.CardType;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,7 @@ public class BundleTest {
 
    @Test
    public void testRemoveCards() {
-      Bundle bundle = new GoldBundle();
+      Bundle bundle = new Bundle(BundleType.GOLD);
       CardType debitCardType = CardType.DEBIT_CARD;
       CardType goldCreditCardType = CardType.GOLD_CREDIT_CARD;
       CardType creditCardType = CardType.CREDIT_CARD;
@@ -30,7 +30,7 @@ public class BundleTest {
 
    @Test
    public void testGetCardTypeList() {
-      Bundle bundle = new GoldBundle();
+      Bundle bundle = new Bundle(BundleType.GOLD);
       List<CardType> cardTypeList = bundle.getCardList().stream().map(card -> card.getCardType()).collect(Collectors.toList());
      Assertions.assertEquals(2,cardTypeList.size());
 

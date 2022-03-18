@@ -105,35 +105,9 @@ public class Bundle {
    }
 
    public void removeCards(List<CardType> cardTypeList) {
-      for(CardType cardType : cardTypeList) {
+      for (CardType cardType : cardTypeList) {
          cardList.removeIf(card -> card.getCardType() == cardType);
       }
-   }
-
-   public static Bundle getBundleFromBundleType(BundleType bundleType) {
-      Bundle returnBundle = null;
-
-      if (bundleType == BundleType.JUNIOR_SAVER) {
-         returnBundle = new JuniorSaverBundle();
-      }
-
-      if (bundleType == BundleType.STUDENT) {
-         returnBundle = new StudentBundle();
-      }
-
-      if (bundleType == BundleType.CLASSIC) {
-         returnBundle = new ClassicBundle();
-      }
-
-      if (bundleType == BundleType.CLASSIC_PLUS) {
-         returnBundle = new ClassicPlusBundle();
-      }
-
-      if (bundleType == BundleType.GOLD) {
-         returnBundle = new GoldBundle();
-      }
-
-      return returnBundle;
    }
 
 }
