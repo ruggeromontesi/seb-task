@@ -24,7 +24,8 @@ public class BundleServiceRecommendBundleTest {
         customerAnswersDto.setStudent(student);
         customerAnswersDto.setIncome(income);
         Bundle resultBundle = bundleService.recommendBundle(customerAnswersDto);
-        Assertions.assertTrue(resultBundle instanceof JuniorSaverBundle);
+        Assertions.assertEquals(BundleType.JUNIOR_SAVER, resultBundle.getBundleType());
+
    }
 
     @Test
@@ -54,7 +55,8 @@ public class BundleServiceRecommendBundleTest {
         customerAnswersDto.setStudent(student);
         customerAnswersDto.setIncome(income);
         Bundle resultBundle = bundleService.recommendBundle(customerAnswersDto);
-        Assertions.assertTrue(resultBundle instanceof StudentBundle);
+        Assertions.assertEquals(BundleType.STUDENT, resultBundle.getBundleType());
+
     }
 
     @Test
@@ -67,7 +69,8 @@ public class BundleServiceRecommendBundleTest {
         customerAnswersDto.setStudent(student);
         customerAnswersDto.setIncome(income);
         Bundle resultBundle = bundleService.recommendBundle(customerAnswersDto);
-        Assertions.assertTrue(resultBundle instanceof ClassicBundle);
+        Assertions.assertEquals(BundleType.CLASSIC, resultBundle.getBundleType());
+
     }
 
 
@@ -81,7 +84,7 @@ public class BundleServiceRecommendBundleTest {
         customerAnswersDto.setStudent(student);
         customerAnswersDto.setIncome(income);
         Bundle resultBundle = bundleService.recommendBundle(customerAnswersDto);
-        Assertions.assertTrue(resultBundle instanceof ClassicPlusBundle);
+        Assertions.assertEquals(BundleType.CLASSIC_PLUS, resultBundle.getBundleType());
     }
 
     @Test
@@ -94,6 +97,7 @@ public class BundleServiceRecommendBundleTest {
         customerAnswersDto.setStudent(student);
         customerAnswersDto.setIncome(income);
         Bundle resultBundle = bundleService.recommendBundle(customerAnswersDto);
-        Assertions.assertTrue(resultBundle instanceof GoldBundle);
+        Assertions.assertEquals(BundleType.GOLD, resultBundle.getBundleType());
+
     }
 }

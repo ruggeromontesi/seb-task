@@ -8,11 +8,6 @@ import com.seb.task.dto.BundleModificationDto;
 import com.seb.task.dto.CustomerAnswersDto;
 import com.seb.task.entity.bundle.Bundle;
 import com.seb.task.entity.bundle.BundleType;
-import com.seb.task.entity.bundle.ClassicBundle;
-import com.seb.task.entity.bundle.ClassicPlusBundle;
-import com.seb.task.entity.bundle.GoldBundle;
-import com.seb.task.entity.bundle.JuniorSaverBundle;
-import com.seb.task.entity.bundle.StudentBundle;
 import com.seb.task.entity.product.accounts.Account;
 import com.seb.task.entity.product.accounts.AccountType;
 import com.seb.task.entity.product.cards.Card;
@@ -34,20 +29,20 @@ public class BundleService {
       int income = dto.getIncome();
 
       if (age < 18) {
-         return new JuniorSaverBundle();
+         return new Bundle(BundleType.JUNIOR_SAVER);
       }
 
       if (student && income == 0) {
-         return  new StudentBundle();
+         return  new Bundle(BundleType.STUDENT);
       } else {
          if (income > 0) {
             if (income > 40000) {
-               return  new GoldBundle();
+               return new Bundle(BundleType.GOLD);
             } else {
                if (income > 12000) {
-                  return  new ClassicPlusBundle();
+                  return  new Bundle(BundleType.CLASSIC_PLUS);
                } else {
-                  return  new ClassicBundle();
+                  return  new Bundle(BundleType.CLASSIC);
                }
             }
          } else {
@@ -62,7 +57,7 @@ public class BundleService {
 
       ruleCheckerService.checkBundleConsistency(bundleType,dto.getCustomerAnswersDto());
 
-      Bundle returnBundle = Bundle.getBundleFromBundleType(bundleType);
+      Bundle returnBundle = new Bundle(bundleType);
 
       AccountType accountType = null;
       Account newAccount = null;
