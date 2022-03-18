@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.seb.task</groupId>
 	<artifactId>home-assignment</artifactId>
-	<version>0.3.0</version>
+	<version>1.0.0</version>
 	<name>home-assignment</name>
 	<description>Home Assignment</description>
 	<properties>

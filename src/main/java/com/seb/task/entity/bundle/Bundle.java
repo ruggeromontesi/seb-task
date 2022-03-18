@@ -72,10 +72,6 @@ public class Bundle {
       if (bundleType == BundleType.CUSTOMIZED) {
          this.bundleType = bundleType;
       }
-
-
-
-
    }
 
    public int getValue() {
@@ -111,5 +107,4 @@ public class Bundle {
          cardList.removeIf(card -> card.getCardType() == cardType);
       }
    }
-
 }
