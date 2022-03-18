@@ -1,6 +1,8 @@
 package com.seb.task.service;
 
+import com.seb.task.dto.CustomerAnswersDto;
 import com.seb.task.entity.bundle.*;
+import com.seb.task.exceptions.NoSuitableProductException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,11 @@ public class BundleServiceRecommendBundleTest {
         int age = 17;
         boolean student = false;
         int income = 0;
-        Bundle resultBundle = bundleService.recommendBundle(age,student,income);
+        CustomerAnswersDto  customerAnswersDto = new CustomerAnswersDto();
+        customerAnswersDto.setAge(age);
+        customerAnswersDto.setStudent(student);
+        customerAnswersDto.setIncome(income);
+        Bundle resultBundle = bundleService.recommendBundle(customerAnswersDto);
         Assertions.assertTrue(resultBundle instanceof JuniorSaverBundle);
    }
 
@@ -26,8 +32,16 @@ public class BundleServiceRecommendBundleTest {
         int age = 18;
         boolean student = false;
         int income = 0;
-        Bundle resultBundle = bundleService.recommendBundle(age,student,income);
-        Assertions.assertNull(resultBundle);
+        CustomerAnswersDto  customerAnswersDto = new CustomerAnswersDto();
+        customerAnswersDto.setAge(age);
+        customerAnswersDto.setStudent(student);
+        customerAnswersDto.setIncome(income);
+        try {
+           bundleService.recommendBundle(customerAnswersDto);
+        } catch (RuntimeException ex ){
+           Assertions.assertTrue(ex instanceof NoSuitableProductException);
+        }
+
     }
 
     @Test
@@ -35,7 +49,11 @@ public class BundleServiceRecommendBundleTest {
         int age = 18;
         boolean student = true;
         int income = 0;
-        Bundle resultBundle = bundleService.recommendBundle(age,student,income);
+        CustomerAnswersDto  customerAnswersDto = new CustomerAnswersDto();
+        customerAnswersDto.setAge(age);
+        customerAnswersDto.setStudent(student);
+        customerAnswersDto.setIncome(income);
+        Bundle resultBundle = bundleService.recommendBundle(customerAnswersDto);
         Assertions.assertTrue(resultBundle instanceof StudentBundle);
     }
 
@@ -44,7 +62,11 @@ public class BundleServiceRecommendBundleTest {
         int age = 18;
         boolean student = true;
         int income = 10;
-        Bundle resultBundle = bundleService.recommendBundle(age,student,income);
+        CustomerAnswersDto  customerAnswersDto = new CustomerAnswersDto();
+        customerAnswersDto.setAge(age);
+        customerAnswersDto.setStudent(student);
+        customerAnswersDto.setIncome(income);
+        Bundle resultBundle = bundleService.recommendBundle(customerAnswersDto);
         Assertions.assertTrue(resultBundle instanceof ClassicBundle);
     }
 
@@ -54,7 +76,11 @@ public class BundleServiceRecommendBundleTest {
         int age = 18;
         boolean student = false;
         int income = 15000;
-        Bundle resultBundle = bundleService.recommendBundle(age,student,income);
+        CustomerAnswersDto  customerAnswersDto = new CustomerAnswersDto();
+        customerAnswersDto.setAge(age);
+        customerAnswersDto.setStudent(student);
+        customerAnswersDto.setIncome(income);
+        Bundle resultBundle = bundleService.recommendBundle(customerAnswersDto);
         Assertions.assertTrue(resultBundle instanceof ClassicPlusBundle);
     }
 
@@ -63,8 +89,11 @@ public class BundleServiceRecommendBundleTest {
         int age = 18;
         boolean student = false;
         int income = 45000;
-        Bundle resultBundle = bundleService.recommendBundle(age,student,income);
+        CustomerAnswersDto  customerAnswersDto = new CustomerAnswersDto();
+        customerAnswersDto.setAge(age);
+        customerAnswersDto.setStudent(student);
+        customerAnswersDto.setIncome(income);
+        Bundle resultBundle = bundleService.recommendBundle(customerAnswersDto);
         Assertions.assertTrue(resultBundle instanceof GoldBundle);
     }
-
 }

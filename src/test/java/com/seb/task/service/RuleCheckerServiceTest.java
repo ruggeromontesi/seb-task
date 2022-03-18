@@ -104,12 +104,6 @@ public class RuleCheckerServiceTest {
       Assertions.assertTrue(ruleCheckerService.isThisTypeOfAccountAllowed(accountType,dto));
       dto.setIncome(20000);
       //Assertions.assertFalse(ruleCheckerService.isThisTypeOfAccountAllowed(newAccountType,dto));
-      /**************/
-
-
    }
-
-
-
 
 }

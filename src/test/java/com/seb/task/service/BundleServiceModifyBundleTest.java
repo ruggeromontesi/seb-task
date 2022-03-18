@@ -25,7 +25,7 @@ public class BundleServiceModifyBundleTest {
       customerAnswersDto.setAge(age);
       customerAnswersDto.setStudent(student);
       customerAnswersDto.setIncome(income);
-      Bundle recommendedBundle = bundleService.returnBundle(customerAnswersDto);
+      Bundle recommendedBundle = bundleService.recommendBundle(customerAnswersDto);
       BundleModificationDto dto = new BundleModificationDto();
       dto.setBundleType(recommendedBundle.getBundleType().name());
       dto.setCustomerAnswersDto(customerAnswersDto);
@@ -47,7 +47,7 @@ public class BundleServiceModifyBundleTest {
       customerAnswersDto.setAge(age);
       customerAnswersDto.setStudent(student);
       customerAnswersDto.setIncome(income);
-      Bundle recommendedBundle = bundleService.returnBundle(customerAnswersDto);
+      Bundle recommendedBundle = bundleService.recommendBundle(customerAnswersDto);
       BundleModificationDto dto = new BundleModificationDto();
       dto.setBundleType(recommendedBundle.getBundleType().name());
       dto.setCustomerAnswersDto(customerAnswersDto);

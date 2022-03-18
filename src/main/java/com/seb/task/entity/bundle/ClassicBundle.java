@@ -5,10 +5,10 @@ import com.seb.task.entity.product.cards.DebitCard;
 
 public class ClassicBundle extends  Bundle{
 
-    public ClassicBundle() {
-        this.bundleType = BundleType.CLASSIC;
-        this.account = new CurrentAccount();
-        this.cardList.add(new DebitCard());
-        this.value = 1;
-    }
+   public ClassicBundle() {
+      this.bundleType = BundleType.CLASSIC;
+      this.account = new CurrentAccount();
+      this.cardList.add(new DebitCard());
+      this.value = 1;
+   }
 }

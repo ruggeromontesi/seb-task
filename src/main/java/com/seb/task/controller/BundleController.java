@@ -28,7 +28,7 @@ public class BundleController {
    @PostMapping(value = "/request")
    public ResponseEntity<Bundle> returnBundle(@RequestBody CustomerAnswersDto customerAnswersDto) {
       if (validateService.customerAnswerDtoValidator(customerAnswersDto)) {
-         Bundle body = bundleService.returnBundle(customerAnswersDto);
+         Bundle body = bundleService.recommendBundle(customerAnswersDto);
          return ResponseEntity.ok(body);
       } else {
          return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();

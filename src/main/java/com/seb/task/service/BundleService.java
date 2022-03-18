@@ -27,13 +27,11 @@ public class BundleService {
    @Autowired
    private RuleCheckerService ruleCheckerService;
 
-   public Bundle returnBundle(CustomerAnswersDto dto) {
-      Bundle bundle;
-      bundle = recommendBundle(dto.getAge(), dto.isStudent(), dto.getIncome());
-      return bundle;
-   }
+   public Bundle recommendBundle(CustomerAnswersDto dto) {
 
-   public Bundle recommendBundle(int age, boolean student, int income) {
+      int age = dto.getAge();
+      boolean student = dto.isStudent();
+      int income = dto.getIncome();
 
       if (age < 18) {
          return new JuniorSaverBundle();
