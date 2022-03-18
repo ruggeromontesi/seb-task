@@ -1,20 +1,20 @@
 package com.seb.task.dto;
 
 public class CustomerAnswersDto {
-   private  int age;
+   private Integer age;
 
    private boolean student;
 
-   private int income;
+   private Integer income;
 
    public CustomerAnswersDto() {
    }
 
-   public int getAge() {
+   public Integer getAge() {
       return age;
    }
 
-   public void setAge(int age) {
+   public void setAge(Integer age) {
       this.age = age;
    }
 
@@ -26,11 +26,11 @@ public class CustomerAnswersDto {
       this.student = student;
    }
 
-   public int getIncome() {
+   public Integer getIncome() {
       return income;
    }
 
-   public void setIncome(int income) {
+   public void setIncome(Integer income) {
       this.income = income;
    }
 }

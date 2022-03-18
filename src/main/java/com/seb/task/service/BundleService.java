@@ -70,7 +70,6 @@ public class BundleService {
          if (ruleCheckerService.isThisTypeOfAccountAllowed(accountType,dto.getCustomerAnswersDto())) {
             returnBundle.setAccount(newAccount);
          }
-
       }
 
       List<CardType> listOfCardTypesToBeRemoved = dto.getCardsToBeRemoved()
@@ -85,10 +84,10 @@ public class BundleService {
          if (ruleCheckerService.isThisTypeOfCardAllowed(cardType,dto.getCustomerAnswersDto(),returnBundle.getBundleType())) {
             listOfCardTypesToBeAdded.add(cardType);
          }
-
       }
 
-      List<CardType> cardTypeList = returnBundle.getCardList().stream().map(card -> card.getCardType()).collect(Collectors.toList());
+      List<CardType> cardTypeList = returnBundle.getCardList()
+            .stream().map(card -> card.getCardType()).collect(Collectors.toList());
       for (CardType cardType : listOfCardTypesToBeAdded) {
          if (!cardTypeList.contains(cardType)) {
             returnBundle.getCardList().add(Card.getCardFromCardType(cardType));

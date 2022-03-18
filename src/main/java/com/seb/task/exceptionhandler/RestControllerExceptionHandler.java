@@ -155,6 +155,16 @@ public class RestControllerExceptionHandler {
                HttpStatus.BAD_REQUEST);
       }
 
+      if (exception instanceof MissingAgeInCustomerDtoException) {
+         return  new ResponseEntity<>("MissingAgeInCustomerDtoException : Age was not specified in Customer answers, an age "
+               + "between 1 and 99 must be specified.",HttpStatus.BAD_REQUEST);
+      }
+
+      if (exception instanceof MissingIncomeInCustomerDtoException) {
+         return  new ResponseEntity<>("MissingIncomeInCustomerDtoException : income was not specified in Customer answers, an "
+               + "income equal or greater than than 0 must be specified.",HttpStatus.BAD_REQUEST);
+      }
+
 
 
 

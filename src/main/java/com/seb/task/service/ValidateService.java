@@ -13,6 +13,8 @@ import com.seb.task.exceptions.InvalidAgeException;
 import com.seb.task.exceptions.InvalidBundleException;
 import com.seb.task.exceptions.InvalidCardException;
 import com.seb.task.exceptions.InvalidIncomeException;
+import com.seb.task.exceptions.MissingAgeInCustomerDtoException;
+import com.seb.task.exceptions.MissingIncomeInCustomerDtoException;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
@@ -24,11 +26,20 @@ public class ValidateService {
     * @return true if dto matches the validity criteria
     */
    public boolean customerAnswerDtoValidator(@NotNull CustomerAnswersDto customerAnswersDto) {
-      if (customerAnswersDto.getAge() < HomeAssignmentConstants.MINIMUM_AGE
+
+      if (customerAnswersDto.getAge() == null) {
+         throw new MissingAgeInCustomerDtoException("Missing age in customer's answers!");
+      }
+
+      if (customerAnswersDto.getIncome() == null) {
+         throw new MissingIncomeInCustomerDtoException("Missing income in customer's answers!");
+      }
+
+      if (customerAnswersDto.getAge() < HomeAssignmentConstants.MINIMUM_AGE + 1
             || customerAnswersDto.getAge() > HomeAssignmentConstants.MAXIMUM_AGE) {
          throw  new InvalidAgeException("Invalid age!",customerAnswersDto.getAge());
       }
-      if (customerAnswersDto.getIncome() < HomeAssignmentConstants.ZERO_INCOME) {
+      if (customerAnswersDto.getIncome() < HomeAssignmentConstants.ZERO_INCOME ) {
          throw new InvalidIncomeException("Invalid income!",customerAnswersDto.getIncome());
       }
       return true;
