@@ -2,8 +2,8 @@ package com.seb.task.exceptionhandler;
 
 import com.seb.task.constants.HomeAssignmentConstants;
 import com.seb.task.entity.bundle.BundleType;
-import com.seb.task.entity.product.accounts.AccountType;
-import com.seb.task.entity.product.cards.CardType;
+import com.seb.task.entity.accounts.AccountType;
+import com.seb.task.entity.cards.CardType;
 import com.seb.task.exceptions.*;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;

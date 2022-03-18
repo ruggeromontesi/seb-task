@@ -1,4 +1,4 @@
-package com.seb.task.entity.product.cards;
+package com.seb.task.entity.cards;
 
 public class GoldCreditCard extends Card{
 

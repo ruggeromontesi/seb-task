@@ -3,16 +3,16 @@ package com.seb.task.entity.bundle;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.seb.task.entity.product.accounts.Account;
-import com.seb.task.entity.product.accounts.CurrentAccount;
-import com.seb.task.entity.product.accounts.CurrentAccountPlus;
-import com.seb.task.entity.product.accounts.JuniorSaverAccount;
-import com.seb.task.entity.product.accounts.StudentAccount;
-import com.seb.task.entity.product.cards.Card;
-import com.seb.task.entity.product.cards.CardType;
-import com.seb.task.entity.product.cards.CreditCard;
-import com.seb.task.entity.product.cards.DebitCard;
-import com.seb.task.entity.product.cards.GoldCreditCard;
+import com.seb.task.entity.accounts.Account;
+import com.seb.task.entity.accounts.CurrentAccount;
+import com.seb.task.entity.accounts.CurrentAccountPlus;
+import com.seb.task.entity.accounts.JuniorSaverAccount;
+import com.seb.task.entity.accounts.StudentAccount;
+import com.seb.task.entity.cards.Card;
+import com.seb.task.entity.cards.CardType;
+import com.seb.task.entity.cards.CreditCard;
+import com.seb.task.entity.cards.DebitCard;
+import com.seb.task.entity.cards.GoldCreditCard;
 
 public class Bundle {
 

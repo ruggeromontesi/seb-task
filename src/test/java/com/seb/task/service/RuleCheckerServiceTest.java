@@ -2,7 +2,7 @@ package com.seb.task.service;
 
 import com.seb.task.dto.CustomerAnswersDto;
 import com.seb.task.entity.bundle.BundleType;
-import com.seb.task.entity.product.accounts.AccountType;
+import com.seb.task.entity.accounts.AccountType;
 import com.seb.task.exceptions.HighIncomeException;
 import com.seb.task.exceptions.IsNotStudentException;
 import com.seb.task.exceptions.MiddleIncomeException;

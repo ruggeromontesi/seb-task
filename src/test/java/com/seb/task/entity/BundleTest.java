@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 import com.seb.task.entity.bundle.Bundle;
 import com.seb.task.entity.bundle.BundleType;
-import com.seb.task.entity.product.cards.CardType;
+import com.seb.task.entity.cards.CardType;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

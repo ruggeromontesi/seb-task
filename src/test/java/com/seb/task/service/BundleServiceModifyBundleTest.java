@@ -3,7 +3,7 @@ package com.seb.task.service;
 import com.seb.task.dto.BundleModificationDto;
 import com.seb.task.dto.CustomerAnswersDto;
 import com.seb.task.entity.bundle.Bundle;
-import com.seb.task.entity.product.accounts.AccountType;
+import com.seb.task.entity.accounts.AccountType;
 import com.seb.task.exceptions.HighIncomeException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -53,15 +53,11 @@ public class BundleServiceModifyBundleTest {
       dto.setCustomerAnswersDto(customerAnswersDto);
       dto.setNewAccountType("CURRENT_ACCOUNT_PLUS");
       dto.getCardsToBeAdded().add("GOLD_CREDIT_CARD");
-      Bundle modifiedBundle ;
       try {
-         modifiedBundle = bundleService.modifyBundle(dto);
+         bundleService.modifyBundle(dto);
       } catch (RuntimeException ex) {
          Assertions.assertTrue(ex instanceof  HighIncomeException);
       }
 
    }
-
-
-
 }
