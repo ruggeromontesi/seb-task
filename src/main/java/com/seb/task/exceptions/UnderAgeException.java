@@ -1,6 +1,6 @@
 package com.seb.task.exceptions;
 
-public class UnderAgeException  extends  RuntimeException{
+public class UnderAgeException  extends  RuntimeException {
    private int age;
 
    public UnderAgeException(String exception, int age) {

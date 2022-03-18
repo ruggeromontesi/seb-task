@@ -3,12 +3,23 @@ package com.seb.task.service;
 import com.seb.task.dto.CustomerAnswersDto;
 import com.seb.task.entity.bundle.BundleType;
 import com.seb.task.entity.product.accounts.AccountType;
+import com.seb.task.exceptions.HighIncomeException;
+import com.seb.task.exceptions.IsNotStudentException;
+import com.seb.task.exceptions.MiddleIncomeException;
+import com.seb.task.exceptions.OverAgeException;
+import com.seb.task.exceptions.UnderAgeException;
+import com.seb.task.exceptions.WeakBundleException;
+import com.seb.task.exceptions.ZeroIncomeException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
+@SpringBootTest
 public class RuleCheckerServiceTest {
 
-   private RuleCheckerService ruleCheckerService = new RuleCheckerService();
+   @Autowired
+   private RuleCheckerService ruleCheckerService;
 
    @Test
    public void isCurrentAccountAllowedTest(){
@@ -17,10 +28,20 @@ public class RuleCheckerServiceTest {
       dto.setIncome(2000);
       Assertions.assertTrue(ruleCheckerService.isCurrentAccountAllowed(dto));
       dto.setIncome(0);
-      //Assertions.assertFalse(ruleCheckerService.isCurrentAccountAllowed(dto));
+      try {
+         ruleCheckerService.isCurrentAccountAllowed(dto);
+      } catch(RuntimeException ex) {
+         Assertions.assertTrue(ex instanceof ZeroIncomeException);
+      }
+
       dto.setAge(17);
       dto.setIncome(2000);
-      //Assertions.assertFalse(ruleCheckerService.isCurrentAccountAllowed(dto));
+      try {
+         ruleCheckerService.isCurrentAccountAllowed(dto);
+      } catch(RuntimeException ex) {
+         Assertions.assertTrue(ex instanceof UnderAgeException);
+      }
+
    }
 
    @Test
@@ -30,7 +51,12 @@ public class RuleCheckerServiceTest {
       dto.setIncome(41000);
       Assertions.assertTrue(ruleCheckerService.isCurrentAccountPlusAllowed(dto));
       dto.setIncome(15000);
-      Assertions.assertFalse(ruleCheckerService.isCurrentAccountPlusAllowed(dto));
+      try {
+         ruleCheckerService.isCurrentAccountAllowed(dto);
+      } catch(RuntimeException ex) {
+         Assertions.assertTrue(ex instanceof HighIncomeException);
+      }
+
    }
 
    @Test
@@ -38,7 +64,11 @@ public class RuleCheckerServiceTest {
       CustomerAnswersDto dto = new CustomerAnswersDto();
       dto.setAge(18);
       dto.setIncome(41000);
-      Assertions.assertFalse(ruleCheckerService.isJuniorSaverAccountAllowed(dto));
+      try {
+         ruleCheckerService.isCurrentAccountAllowed(dto);
+      } catch(RuntimeException ex) {
+         Assertions.assertTrue(ex instanceof OverAgeException);
+      }
       dto.setAge(17);
       Assertions.assertTrue(ruleCheckerService.isJuniorSaverAccountAllowed(dto));
    }
@@ -48,17 +78,25 @@ public class RuleCheckerServiceTest {
       CustomerAnswersDto dto = new CustomerAnswersDto();
       dto.setAge(18);
       dto.setIncome(41000);
-      Assertions.assertFalse(ruleCheckerService.isStudentAccountAllowed(dto));
+      try {
+         ruleCheckerService.isStudentAccountAllowed(dto);
+      } catch (RuntimeException ex) {
+         Assertions.assertTrue(ex instanceof IsNotStudentException );
+      }
       dto.setStudent(true);
       Assertions.assertTrue(ruleCheckerService.isStudentAccountAllowed(dto));
-
    }
 
    @Test
    public void isDebitCardAllowedTest() {
       for(BundleType bundleType : BundleType.values()) {
          if(bundleType == BundleType.JUNIOR_SAVER) {
-            Assertions.assertFalse(ruleCheckerService.isDebitCardAllowed(bundleType));
+            try {
+               ruleCheckerService.isDebitCardAllowed(bundleType);
+            } catch(RuntimeException ex) {
+               Assertions.assertTrue(ex instanceof WeakBundleException);
+            }
+
          } else {
             Assertions.assertTrue(ruleCheckerService.isDebitCardAllowed(bundleType));
          }
@@ -72,7 +110,12 @@ public class RuleCheckerServiceTest {
       dto.setIncome(41000);
       Assertions.assertTrue(ruleCheckerService.isCreditCardAllowed(dto));
       dto.setIncome(1000);
-      Assertions.assertFalse(ruleCheckerService.isCreditCardAllowed(dto));
+      try {
+         ruleCheckerService.isCreditCardAllowed(dto);
+      } catch (RuntimeException ex) {
+         Assertions.assertTrue(ex instanceof MiddleIncomeException);
+      }
+
       dto.setIncome(21000);
       Assertions.assertTrue(ruleCheckerService.isCreditCardAllowed(dto));
    }
@@ -84,9 +127,12 @@ public class RuleCheckerServiceTest {
       dto.setIncome(41000);
       Assertions.assertTrue(ruleCheckerService.isGoldCreditCardAllowed(dto));
       dto.setIncome(10000);
-      Assertions.assertFalse(ruleCheckerService.isGoldCreditCardAllowed(dto));
+      try {
+         ruleCheckerService.isGoldCreditCardAllowed(dto);
+      }catch (RuntimeException ex) {
+         Assertions.assertTrue(ex instanceof HighIncomeException);
+      }
       dto.setIncome(1000);
-      Assertions.assertFalse(ruleCheckerService.isGoldCreditCardAllowed(dto));
    }
 
    @Test
@@ -95,15 +141,28 @@ public class RuleCheckerServiceTest {
       dto.setAge(18);
       dto.setIncome(41000);
       AccountType accountType = AccountType.JUNIOR_SAVER_ACCOUNT;
-      //Assertions.assertFalse(ruleCheckerService.isThisTypeOfAccountAllowed(newAccountType,dto));
+      try {
+         ruleCheckerService.isThisTypeOfAccountAllowed(accountType,dto);
+      } catch (RuntimeException ex) {
+         Assertions.assertTrue(ex instanceof OverAgeException);
+      }
+
       dto.setAge(17);
       Assertions.assertTrue(ruleCheckerService.isThisTypeOfAccountAllowed(accountType,dto));
       accountType = AccountType.CURRENT_ACCOUNT_PLUS;
-      //Assertions.assertFalse(ruleCheckerService.isThisTypeOfAccountAllowed(newAccountType,dto));
+      try {
+         ruleCheckerService.isThisTypeOfAccountAllowed(accountType,dto);
+      } catch (RuntimeException ex) {
+         Assertions.assertTrue(ex instanceof UnderAgeException);
+      }
       dto.setAge(28);
       Assertions.assertTrue(ruleCheckerService.isThisTypeOfAccountAllowed(accountType,dto));
       dto.setIncome(20000);
-      //Assertions.assertFalse(ruleCheckerService.isThisTypeOfAccountAllowed(newAccountType,dto));
+      try {
+         ruleCheckerService.isThisTypeOfAccountAllowed(accountType,dto);
+      } catch (RuntimeException ex) {
+         Assertions.assertTrue(ex instanceof HighIncomeException);
+      }
    }
 
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.seb.task.constants.HomeAssignmentConstants;
 import com.seb.task.dto.BundleModificationDto;
 import com.seb.task.dto.CustomerAnswersDto;
 import com.seb.task.entity.bundle.Bundle;
@@ -28,18 +29,18 @@ public class BundleService {
       boolean student = dto.isStudent();
       int income = dto.getIncome();
 
-      if (age < 18) {
+      if (age < HomeAssignmentConstants.AGE_EIGHTEEN) {
          return new Bundle(BundleType.JUNIOR_SAVER);
       }
 
       if (student && income == 0) {
          return  new Bundle(BundleType.STUDENT);
       } else {
-         if (income > 0) {
-            if (income > 40000) {
+         if (income > HomeAssignmentConstants.ZERO_INCOME) {
+            if (income > HomeAssignmentConstants.HIGH_INCOME) {
                return new Bundle(BundleType.GOLD);
             } else {
-               if (income > 12000) {
+               if (income > HomeAssignmentConstants.MIDDLE_INCOME) {
                   return  new Bundle(BundleType.CLASSIC_PLUS);
                } else {
                   return  new Bundle(BundleType.CLASSIC);

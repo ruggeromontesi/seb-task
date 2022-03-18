@@ -1,6 +1,6 @@
 package com.seb.task.exceptions;
 
-public class OverAgeException extends  RuntimeException{
+public class OverAgeException extends  RuntimeException {
    private static final long serialVersionUID = 1L;
 
    private int age;

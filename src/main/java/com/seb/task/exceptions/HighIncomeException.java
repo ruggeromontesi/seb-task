@@ -5,7 +5,7 @@ public class HighIncomeException extends RuntimeException {
 
    private int income;
 
-   public HighIncomeException (String message, int income) {
+   public HighIncomeException(String message, int income) {
       super(message);
       this.income = income;
 

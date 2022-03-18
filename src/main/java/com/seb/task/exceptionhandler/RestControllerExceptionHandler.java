@@ -49,17 +49,16 @@ public class RestControllerExceptionHandler {
       if (exception instanceof InvalidAgeException) {
          return new ResponseEntity<>(
                "Wrong answer was given to question : age must be within 1 and 99."
-                     +" An age of " + ((InvalidAgeException) exception).getAge() + " was typed instead.",
+                     + " An age of " + ((InvalidAgeException) exception).getAge() + " was typed instead.",
                HttpStatus.BAD_REQUEST);
       }
 
       if (exception instanceof InvalidIncomeException) {
          return new ResponseEntity<>(
-               "Wrong answer was given to question : income must be greater than 0." +
-                     " An income of " + ((InvalidIncomeException) exception).getIncome() + " was typed instead.",
+               "Wrong answer was given to question : income must be greater than 0."
+                     + " An income of " + ((InvalidIncomeException) exception).getIncome() + " was typed instead.",
                HttpStatus.BAD_REQUEST);
       }
-
 
       if (exception instanceof InvalidBundleException) {
          List<String> enumNames = Stream.of(BundleType.values())
@@ -103,29 +102,26 @@ public class RestControllerExceptionHandler {
                HttpStatus.BAD_REQUEST);
       }
 
-
       if (exception instanceof HighIncomeException) {
-
          String message =
-               "Insufficient income. The selected product is only allowed with an income higher than " + HomeAssignmentConstants.HIGH_INCOME;
+               "Insufficient income. The selected product is only allowed with an income higher than "
+                     + HomeAssignmentConstants.HIGH_INCOME;
 
          return new ResponseEntity<>(
                message + ". The current income is instead " + ((HighIncomeException) exception).getIncome(),
                HttpStatus.BAD_REQUEST);
       }
 
-
       if (exception instanceof MiddleIncomeException) {
 
          String message =
-               "Insufficient income. This product is only allowed with an income higher than " + HomeAssignmentConstants.MIDDLE_INCOME;
+               "Insufficient income. This product is only allowed with an income higher than "
+                     + HomeAssignmentConstants.MIDDLE_INCOME;
 
          return new ResponseEntity<>(
                message + ". The current income is instead " + ((MiddleIncomeException) exception).getIncome(),
                HttpStatus.BAD_REQUEST);
       }
-
-
 
       if (exception instanceof UnderAgeException) {
          return new ResponseEntity<>(
@@ -165,19 +161,6 @@ public class RestControllerExceptionHandler {
                + "income equal or greater than than 0 must be specified.",HttpStatus.BAD_REQUEST);
       }
 
-
-
-
-
-
-
-
-
-
-
       throw  exception;
-
    }
-
-
 }
