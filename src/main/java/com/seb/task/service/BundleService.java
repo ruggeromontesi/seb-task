@@ -27,7 +27,7 @@ public class BundleService {
 
       int age = dto.getAge();
       boolean student = dto.isStudent();
-      int income = dto.getIncome();
+      double income = dto.getIncome();
 
       if (age < HomeAssignmentConstants.AGE_EIGHTEEN) {
          return new Bundle(BundleType.JUNIOR_SAVER);

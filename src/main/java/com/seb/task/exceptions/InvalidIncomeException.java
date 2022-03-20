@@ -4,15 +4,15 @@ public class InvalidIncomeException extends RuntimeException {
 
    private static final long serialVersionUID = 1L;
 
-   private int income;
+   private double income;
 
-   public InvalidIncomeException(String message, int income) {
+   public InvalidIncomeException(String message, double income) {
       super(message);
       this.income = income;
 
    }
 
-   public int getIncome() {
+   public double getIncome() {
       return income;
    }
 }

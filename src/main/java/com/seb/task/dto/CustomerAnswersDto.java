@@ -5,7 +5,7 @@ public class CustomerAnswersDto {
 
    private boolean student;
 
-   private Integer income;
+   private Double income;
 
    public CustomerAnswersDto() {
    }
@@ -26,11 +26,11 @@ public class CustomerAnswersDto {
       this.student = student;
    }
 
-   public Integer getIncome() {
+   public Double getIncome() {
       return income;
    }
 
-   public void setIncome(Integer income) {
+   public void setIncome(Double income) {
       this.income = income;
    }
 }

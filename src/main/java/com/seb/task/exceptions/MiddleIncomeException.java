@@ -3,15 +3,15 @@ package com.seb.task.exceptions;
 public class MiddleIncomeException  extends  RuntimeException {
    private static final long serialVersionUID = 1L;
 
-   private int income;
+   private double income;
 
-   public MiddleIncomeException(String message, int income) {
+   public MiddleIncomeException(String message, double income) {
       super(message);
       this.income = income;
 
    }
 
-   public int getIncome() {
+   public double getIncome() {
       return income;
    }
 }

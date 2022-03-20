@@ -5,15 +5,15 @@ public class ZeroIncomeException extends RuntimeException {
 
    private static final long serialVersionUID = 1L;
 
-   private int income;
+   private double income;
 
-   public ZeroIncomeException(String message, int income) {
+   public ZeroIncomeException(String message, double income) {
       super(message);
       this.income = income;
 
    }
 
-   public int getIncome() {
+   public double getIncome() {
       return income;
    }
 }

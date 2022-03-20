@@ -20,7 +20,7 @@ public class BundleServiceModifyBundleTest {
    public void testModifyBundleFromGold() {
       int age = 27;
       boolean student = false;
-      int income = 50000;
+      double income = 50000;
       CustomerAnswersDto customerAnswersDto = new CustomerAnswersDto();
       customerAnswersDto.setAge(age);
       customerAnswersDto.setStudent(student);
@@ -42,7 +42,7 @@ public class BundleServiceModifyBundleTest {
    public void testModifyBundleUserWithNoIncomeUpgradesToGold(){
       int age = 27;
       boolean student = true;
-      int income = 0;
+      double income = 0;
       CustomerAnswersDto customerAnswersDto = new CustomerAnswersDto();
       customerAnswersDto.setAge(age);
       customerAnswersDto.setStudent(student);

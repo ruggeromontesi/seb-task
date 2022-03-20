@@ -18,7 +18,7 @@ public class BundleServiceRecommendBundleTest {
     public void testRecommendBundleJuniorSaver() {
         int age = 17;
         boolean student = false;
-        int income = 0;
+        double income = 0;
         CustomerAnswersDto  customerAnswersDto = new CustomerAnswersDto();
         customerAnswersDto.setAge(age);
         customerAnswersDto.setStudent(student);
@@ -32,7 +32,7 @@ public class BundleServiceRecommendBundleTest {
     public void testRecommendBundleNone() {
         int age = 18;
         boolean student = false;
-        int income = 0;
+        double income = 0;
         CustomerAnswersDto  customerAnswersDto = new CustomerAnswersDto();
         customerAnswersDto.setAge(age);
         customerAnswersDto.setStudent(student);
@@ -49,7 +49,7 @@ public class BundleServiceRecommendBundleTest {
     public void testRecommendBundleStudent() {
         int age = 18;
         boolean student = true;
-        int income = 0;
+        double income = 0;
         CustomerAnswersDto  customerAnswersDto = new CustomerAnswersDto();
         customerAnswersDto.setAge(age);
         customerAnswersDto.setStudent(student);
@@ -63,7 +63,7 @@ public class BundleServiceRecommendBundleTest {
     public void testRecommendBundleClassic() {
         int age = 18;
         boolean student = true;
-        int income = 10;
+        double income = 10;
         CustomerAnswersDto  customerAnswersDto = new CustomerAnswersDto();
         customerAnswersDto.setAge(age);
         customerAnswersDto.setStudent(student);
@@ -78,7 +78,7 @@ public class BundleServiceRecommendBundleTest {
     public void testRecommendBundleClassicPlus() {
         int age = 18;
         boolean student = false;
-        int income = 15000;
+        double income = 15000;
         CustomerAnswersDto  customerAnswersDto = new CustomerAnswersDto();
         customerAnswersDto.setAge(age);
         customerAnswersDto.setStudent(student);
@@ -91,7 +91,7 @@ public class BundleServiceRecommendBundleTest {
     public void testRecommendBundleGold() {
         int age = 18;
         boolean student = false;
-        int income = 45000;
+        double income = 45000;
         CustomerAnswersDto  customerAnswersDto = new CustomerAnswersDto();
         customerAnswersDto.setAge(age);
         customerAnswersDto.setStudent(student);

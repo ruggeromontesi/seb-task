@@ -25,9 +25,9 @@ public class RuleCheckerServiceTest {
    public void isCurrentAccountAllowedTest(){
       CustomerAnswersDto dto = new CustomerAnswersDto();
       dto.setAge(18);
-      dto.setIncome(2000);
+      dto.setIncome(2000.0);
       Assertions.assertTrue(ruleCheckerService.isCurrentAccountAllowed(dto));
-      dto.setIncome(0);
+      dto.setIncome(0.0);
       try {
          ruleCheckerService.isCurrentAccountAllowed(dto);
       } catch(RuntimeException ex) {
@@ -35,7 +35,7 @@ public class RuleCheckerServiceTest {
       }
 
       dto.setAge(17);
-      dto.setIncome(2000);
+      dto.setIncome(2000.0);
       try {
          ruleCheckerService.isCurrentAccountAllowed(dto);
       } catch(RuntimeException ex) {
@@ -48,9 +48,9 @@ public class RuleCheckerServiceTest {
    public  void isCurrentAccountPlusAllowedTest() {
       CustomerAnswersDto dto = new CustomerAnswersDto();
       dto.setAge(18);
-      dto.setIncome(41000);
+      dto.setIncome(41000.0);
       Assertions.assertTrue(ruleCheckerService.isCurrentAccountPlusAllowed(dto));
-      dto.setIncome(15000);
+      dto.setIncome(15000.0);
       try {
          ruleCheckerService.isCurrentAccountAllowed(dto);
       } catch(RuntimeException ex) {
@@ -63,7 +63,7 @@ public class RuleCheckerServiceTest {
    public void isJuniorSaverAccountAllowedTest() {
       CustomerAnswersDto dto = new CustomerAnswersDto();
       dto.setAge(18);
-      dto.setIncome(41000);
+      dto.setIncome(41000.0);
       try {
          ruleCheckerService.isCurrentAccountAllowed(dto);
       } catch(RuntimeException ex) {
@@ -77,7 +77,7 @@ public class RuleCheckerServiceTest {
    public void isStudentAccountAllowedTest() {
       CustomerAnswersDto dto = new CustomerAnswersDto();
       dto.setAge(18);
-      dto.setIncome(41000);
+      dto.setIncome(41000.0);
       try {
          ruleCheckerService.isStudentAccountAllowed(dto);
       } catch (RuntimeException ex) {
@@ -107,16 +107,16 @@ public class RuleCheckerServiceTest {
    public void isCreditCardAllowed() {
       CustomerAnswersDto dto = new CustomerAnswersDto();
       dto.setAge(18);
-      dto.setIncome(41000);
+      dto.setIncome(41000.0);
       Assertions.assertTrue(ruleCheckerService.isCreditCardAllowed(dto));
-      dto.setIncome(1000);
+      dto.setIncome(1000.0);
       try {
          ruleCheckerService.isCreditCardAllowed(dto);
       } catch (RuntimeException ex) {
          Assertions.assertTrue(ex instanceof MiddleIncomeException);
       }
 
-      dto.setIncome(21000);
+      dto.setIncome(21000.0);
       Assertions.assertTrue(ruleCheckerService.isCreditCardAllowed(dto));
    }
 
@@ -124,22 +124,22 @@ public class RuleCheckerServiceTest {
    public void isGoldCreditCardAllowed() {
       CustomerAnswersDto dto = new CustomerAnswersDto();
       dto.setAge(18);
-      dto.setIncome(41000);
+      dto.setIncome(41000.0);
       Assertions.assertTrue(ruleCheckerService.isGoldCreditCardAllowed(dto));
-      dto.setIncome(10000);
+      dto.setIncome(10000.0);
       try {
          ruleCheckerService.isGoldCreditCardAllowed(dto);
       }catch (RuntimeException ex) {
          Assertions.assertTrue(ex instanceof HighIncomeException);
       }
-      dto.setIncome(1000);
+      dto.setIncome(1000.0);
    }
 
    @Test
    public void isThisTypeOfAccountAllowedTest() {
       CustomerAnswersDto dto = new CustomerAnswersDto();
       dto.setAge(18);
-      dto.setIncome(41000);
+      dto.setIncome(41000.0);
       AccountType accountType = AccountType.JUNIOR_SAVER_ACCOUNT;
       try {
          ruleCheckerService.isThisTypeOfAccountAllowed(accountType,dto);
@@ -157,7 +157,7 @@ public class RuleCheckerServiceTest {
       }
       dto.setAge(28);
       Assertions.assertTrue(ruleCheckerService.isThisTypeOfAccountAllowed(accountType,dto));
-      dto.setIncome(20000);
+      dto.setIncome(20000.0);
       try {
          ruleCheckerService.isThisTypeOfAccountAllowed(accountType,dto);
       } catch (RuntimeException ex) {
