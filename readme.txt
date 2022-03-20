@@ -5,6 +5,11 @@ Acommand pompt will open. type the following:
 2)cd seb-task
 3)mvn clean install ( or more quickly :mvn clean install  -DskipTests=true )
 4) mvn spring-boot:run
+/********************/
+/********************/
+/********************/
+/********************/
+HOW TO RUN THE APPLICATION TESTS
 5)Open postman and import collection task.postman_collection.json
 
 This collection contains two calls:
@@ -57,17 +62,11 @@ a String chosen among values :
     "newAccountType" :"CURRENT_ACCOUNT",
         "cardsToBeRemoved": [
             "GOLD_CREDIT_CARD"
-            
-            
-           
     ],
-
     "cardsToBeAdded": [
          "GOLD_CREDIT_CARD"
-
     ]
 }
-
 /********************/
 
 
