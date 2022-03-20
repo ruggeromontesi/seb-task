@@ -18,10 +18,12 @@ This collection contains two calls:
 *********
 
 requestBundle
+Method : POST
+URI:http://localhost:8080/request
 The body of the rest call contains the parameters used to model the customers' answers:
 age: should be within 0 and 100, side points excluded.
 student: can be true or false
-income : and integer bigger than 0
+income : a value bigger than 0
 {
     "age":32,
     "student": false,
@@ -31,6 +33,8 @@ income : and integer bigger than 0
 ************
 
  modifyBundle
+ Method : POST
+ URI: http://localhost:8080/modify
 
 The body of this call contains details needed to customize the bundle
 
@@ -60,7 +64,7 @@ a String chosen among values :
          "income":60000
     },
     "newAccountType" :"CURRENT_ACCOUNT",
-        "cardsToBeRemoved": [
+    "cardsToBeRemoved": [
             "GOLD_CREDIT_CARD"
     ],
     "cardsToBeAdded": [
