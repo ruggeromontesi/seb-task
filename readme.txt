@@ -19,7 +19,7 @@ This collection contains two calls:
 
 requestBundle
 Method : POST
-URI:http://localhost:8080/request
+URI:http://localhost:8080/requestBundle
 The body of the rest call contains the parameters used to model the customers' answers:
 age: should be within 0 and 100, side points excluded.
 student: can be true or false
@@ -34,7 +34,7 @@ income : a value bigger than 0
 
  modifyBundle
  Method : POST
- URI: http://localhost:8080/modify
+ URI: http://localhost:8080/modifyBundle
 
 The body of this call contains details needed to customize the bundle
 

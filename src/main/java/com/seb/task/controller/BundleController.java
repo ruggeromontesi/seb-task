@@ -25,7 +25,7 @@ public class BundleController {
     *@param customerAnswersDto contains client answers
     *@return ResponseEntity with recommended bundle or BAD_REQUEST status in case wrong parameters are supplied.
     */
-   @PostMapping(value = "/request")
+   @PostMapping(value = "/requestBundle")
    public ResponseEntity<Bundle> returnBundle(@RequestBody CustomerAnswersDto customerAnswersDto) {
       if (validateService.customerAnswerDtoValidator(customerAnswersDto)) {
          Bundle body = bundleService.recommendBundle(customerAnswersDto);
@@ -40,7 +40,7 @@ public class BundleController {
     * @param bundleModificationDto contains bundle to modify, client answers and products to change
     * @return the modified bundle
     */
-   @PostMapping(value = "/modify")
+   @PostMapping(value = "/modifyBundle")
    public ResponseEntity<Bundle> modifyBundle(@RequestBody BundleModificationDto bundleModificationDto) {
       if (validateService.validateModificationBundleDto(bundleModificationDto)) {
          return ResponseEntity.ok(bundleService.modifyBundle(bundleModificationDto));
