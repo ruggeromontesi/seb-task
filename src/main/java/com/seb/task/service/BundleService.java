@@ -64,7 +64,7 @@ public class BundleService {
       Account newAccount = null;
       if (dto.getNewAccountType() != null) {
          accountType = AccountType.valueOf(dto.getNewAccountType());
-         newAccount = Account.getAccountFromAccountType(accountType);
+         newAccount = new Account(accountType);
       }
 
       if (accountType != null) {
@@ -91,7 +91,7 @@ public class BundleService {
             .stream().map(card -> card.getCardType()).collect(Collectors.toList());
       for (CardType cardType : listOfCardTypesToBeAdded) {
          if (!cardTypeList.contains(cardType)) {
-            returnBundle.getCardList().add(Card.getCardFromCardType(cardType));
+            returnBundle.getCardList().add(new Card(cardType));
          }
       }
       returnBundle.setBundleType(BundleType.CUSTOMIZED);
